@@ -15,7 +15,7 @@ class GUI(tk.Tk):
         tk.Label(self, text="How often should it be done").grid(row=1, column=3, columnspan=3)
         tk.Label(self, text="Options to set the time").grid(row=2, column=3, columnspan=3)
         tk.Label(self, text="Start Hotkey").grid(row=3, column=4, columnspan=2)
-        tk.Button(self, text="ctrl_l + f2", command=self.app.change_turn_on_hotkey).grid(
+        tk.Button(self, text="ctrl_l + f2", command=self.app.change_hotkey).grid(
             row=4, column=4, columnspan=2)
         tk.Label(self, text="Stop Hotkey").grid(row=3, column=6)
         tk.Button(self, text="ctrl_l + f3", command=None).grid(row=4, column=6, columnspan=2)

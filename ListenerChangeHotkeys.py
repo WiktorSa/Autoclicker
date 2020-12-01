@@ -14,14 +14,10 @@ class ListenerChangeHotkeys:
         #  to avoid any possible consequences of doing that
         self.fix_against_ctrl_l = 0
         self.fix_against_ctrl_r = 0
-        #  The GUI that will be visible when user prompts to change a hotkey
-        self.gui = ""
 
     def start_listening(self):
         listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
         listener.start()
-        self.gui = GUIChangeHotkeys(listener)
-        self.gui.mainloop()
 
     def on_press(self, key):
         print("ListenerChangeHotkeys is workking")
@@ -50,9 +46,6 @@ class ListenerChangeHotkeys:
             pass
         else:
             if self.length_of_hotkey == 2:
-                #  We first quit the mainloop process and later destory the whole window
-                self.gui.quit()
-                self.gui.destroy()
                 return False
             else:
                 self.last_press = ""
@@ -60,6 +53,3 @@ class ListenerChangeHotkeys:
                 self.fix_against_ctrl_l = 0
                 self.fix_against_ctrl_r = 0
                 self.length_of_hotkey = 0
-
-    def get_hotkey(self):
-        return self.hotkey
