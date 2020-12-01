@@ -17,10 +17,10 @@ class ListenerChangeHotkeys:
         #  The GUI that will be visible when user prompts to change a hotkey
         self.gui = ""
 
-    def start_listening(self, tk_instance):
+    def start_listening(self):
         listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
         listener.start()
-        self.gui = GUIChangeHotkeys(tk_instance, listener)
+        self.gui = GUIChangeHotkeys(listener)
         self.gui.mainloop()
 
     def on_press(self, key):

@@ -29,7 +29,7 @@ class App:
             self.run_autoclicker = Thread(target=self.autoclicker.turn_on)
 
     def change_turn_on_hotkey(self):
-        self.listener_change_hotkeys.start_listening(self.gui)
+        self.listener_change_hotkeys.start_listening()
         print("Something should change")
     #    changed_key = self.changing_hotkeys.get_hotkey()
     #    self.listener.change_turn_on_hotkey(changed_key)
