@@ -19,10 +19,15 @@ class ListenerForHotkeys:
         #  to avoid any possible consequences of doing that
         self.fix_against_ctrl_l = 0
         self.fix_against_ctrl_r = 0
+        # Our listener
+        self.listener = ""
 
     def start_listening(self):
-        listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
-        listener.start()
+        self.listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
+        self.listener.start()
+
+    def stop_listening(self):
+        self.listener.stop()
 
     def on_press(self, key):
         print("ListenerForHotkeys is working")
