@@ -9,7 +9,6 @@ class GUIChangeHotkeys(tk.Toplevel):
         self.resizable(False, False)
         self.listener = listener
         tk.Label(self, text="Press two buttons to make a new hotkey").pack()
-        tk.Toplevel.wait_window(self)
 
     def stop_listening(self):
         self.listener.stop()

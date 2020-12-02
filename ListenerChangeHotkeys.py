@@ -31,8 +31,7 @@ class ListenerChangeHotkeys:
         #  We create a window that will be visible to user until he inputs a new hotkey or
         #  he decides to stop the action by closing the window
         self.window = GUIChangeHotkeys(listener)
-        #self.window = tk.Toplevel()
-        #self.window.title("")
+        self.window.wait_window()
 
     def on_press(self, key):
         print("ListenerChangeHotkeys is workking")
