@@ -7,7 +7,6 @@ class ListenerChangeHotkeys:
     def __init__(self):
         self.hotkey = ""
         self.last_press = ""
-        #  The hotkey can only consist of two pressed buttons
         self.length_of_hotkey = 0
         #  There is an error while typing ctrl+a for instance (a is not visible)
         #  If the user presses either ctrl_l or ctrl_r this number will increase to 1
@@ -19,13 +18,6 @@ class ListenerChangeHotkeys:
         self.window = ""
 
     def start_listening(self):
-        #  To eleminate any unwanted results we reset all the data
-        self.last_press = ""
-        self.hotkey = ""
-        self.fix_against_ctrl_l = 0
-        self.fix_against_ctrl_r = 0
-        self.length_of_hotkey = 0
-        #  We start listening for user input
         listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
         listener.start()
         #  We create a window that will be visible to user until he inputs a new hotkey or
@@ -34,7 +26,6 @@ class ListenerChangeHotkeys:
         self.window.wait_window()
 
     def on_press(self, key):
-        print("ListenerChangeHotkeys is workking")
         try:
             format_key = key.char
         except AttributeError:
@@ -59,13 +50,17 @@ class ListenerChangeHotkeys:
         elif key == keyboard.Key.ctrl_r and self.fix_against_ctrl_r == 1:
             pass
         else:
-            #  The input should be two keys. After receiving this input we close the window and stop listening
+            #  The input should consist of two keys
             if self.length_of_hotkey == 2:
                 self.window.destroy()
                 return False
             else:
+                self.window.change_text()
                 self.last_press = ""
                 self.hotkey = ""
                 self.fix_against_ctrl_l = 0
                 self.fix_against_ctrl_r = 0
                 self.length_of_hotkey = 0
+
+    def get_hotkey(self):
+        return self.length_of_hotkey, self.hotkey
