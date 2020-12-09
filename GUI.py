@@ -1,4 +1,5 @@
 import tkinter as tk
+import pathlib
 from tkinter import ttk
 from GUIInfo import GUIInfo
 
@@ -7,10 +8,10 @@ class GUI(tk.Tk):
     def __init__(self, app):
         self.app = app
         tk.Tk.__init__(self)
-        tk.Tk.title(self, "Free Autoclicker")
-        tk.Tk.config(self, bg='white')
-        tk.Tk.iconbitmap(self, "click.ico")
-        tk.Tk.protocol(self, "WM_DELETE_WINDOW", self.app.turn_off)
+        self.title("Free Autoclicker")
+        self.config(bg='white')
+        #self.iconphoto(True, tk.PhotoImage(file=(str(pathlib.Path(__file__).parent.absolute()) + "\\click.png")))
+        self.protocol("WM_DELETE_WINDOW", self.app.turn_off)
         self.resizable(False, False)
         #  Creating styles for our app
         self.styles = ttk.Style()

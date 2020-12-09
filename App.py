@@ -99,7 +99,3 @@ class App:
         if self.run_autoclicker.is_alive():
             self.autoclicker.turn_off()
         sys.exit()
-
-
-if __name__ == "__main__":
-    App()

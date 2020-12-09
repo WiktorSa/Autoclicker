@@ -4,9 +4,8 @@ import tkinter as tk
 class GUIChangeHotkeys(tk.Toplevel):
     def __init__(self, listener):
         tk.Toplevel.__init__(self)
-        tk.Toplevel.title(self, "")
-        tk.Toplevel.protocol(self, "WM_DELETE_WINDOW", self.stop_listening)
-        tk.Toplevel.iconbitmap(self, "white.ico")
+        self.title("Change Hotkeys")
+        self.protocol("WM_DELETE_WINDOW", self.stop_listening)
         self.resizable(False, False)
         self.listener = listener
         self.text = tk.Label(self, text="Press two buttons to make a new hotkey", font=('Helvetica', 12))

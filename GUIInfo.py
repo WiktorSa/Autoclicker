@@ -4,8 +4,7 @@ import tkinter as tk
 class GUIInfo(tk.Toplevel):
     def __init__(self):
         tk.Toplevel.__init__(self)
-        tk.Toplevel.title(self, "Info")
-        tk.Toplevel.iconbitmap(self, "click.ico")
+        self.title("Info")
         self.resizable(False, False)
         self.text = tk.Label(self, text="Free autoclicker made by Wiktor Sadowy\n", font=('Helvetica', 12))
         self.text.pack()
