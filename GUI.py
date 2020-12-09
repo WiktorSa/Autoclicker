@@ -10,7 +10,7 @@ class GUI(tk.Tk):
         tk.Tk.__init__(self)
         self.title("Free Autoclicker")
         self.config(bg='white')
-        #self.iconphoto(True, tk.PhotoImage(file=(str(pathlib.Path(__file__).parent.absolute()) + "\\click.png")))
+        self.iconphoto(True, tk.PhotoImage(file=(str(pathlib.Path(__file__).parent.absolute()) + "\\click.png")))
         self.protocol("WM_DELETE_WINDOW", self.app.turn_off)
         self.resizable(False, False)
         #  Creating styles for our app
