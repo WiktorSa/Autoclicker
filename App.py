@@ -13,8 +13,10 @@ class App:
         self.autoclicker = Autoclicker()
         self.listener_for_hotkeys = ListenerForHotkeys(self)
         self.gui = GUI(self)
+
         #  Declaring all the variables that will be important
         self.run_autoclicker = Thread(target=self.autoclicker.turn_on)
+
         #  Turning on all the functionalities of the programss
         self.listener_for_hotkeys.start_listening()
         self.gui.mainloop()
@@ -37,22 +39,28 @@ class App:
     def change_hotkey(self, is_it_turn_on_hotkey):
         self.gui.disable_all_options("ChangeHotkeys")
         self.listener_for_hotkeys.stop_listening()
+
         listener_change_hotkeys = ListenerChangeHotkeys()
         listener_change_hotkeys.start_listening()
         length_of_hotkey, hotkey = listener_change_hotkeys.get_hotkey()
+
         if length_of_hotkey == 2:
             self.gui.change_hotkeys(hotkey, is_it_turn_on_hotkey)
             self.listener_for_hotkeys.change_hotkeys(hotkey, is_it_turn_on_hotkey)
+
         self.listener_for_hotkeys.start_listening()
         self.gui.enable_all_options("ChangeHotkeys")
 
     def get_time(self, which_time):
         if which_time == "minutes":
             return self.autoclicker.get_minutes_time()
+
         elif which_time == "seconds":
             return self.autoclicker.get_seconds_time()
+
         elif which_time == "1/10":
             return self.autoclicker.get_one_tenth_seconds_time()
+
         else:
             return self.autoclicker.get_one_hundred_seconds_time()
 
@@ -61,14 +69,17 @@ class App:
             if self.autoclicker.get_minutes_time() + 1 < 60:
                 self.autoclicker.change_time(which_time, 1)
                 self.gui.change_time(which_time)
+
         elif which_time == "seconds":
             if self.autoclicker.get_seconds_time() + 1 < 60:
                 self.autoclicker.change_time(which_time, 1)
                 self.gui.change_time(which_time)
+
         elif which_time == "1/10":
             if self.autoclicker.get_one_tenth_seconds_time() + 1 < 10:
                 self.autoclicker.change_time(which_time, 1)
                 self.gui.change_time(which_time)
+
         else:
             if self.autoclicker.get_one_hundred_seconds_time() + 1 < 10:
                 self.autoclicker.change_time(which_time, 1)
@@ -79,14 +90,17 @@ class App:
             if self.autoclicker.get_minutes_time() - 1 >= 0:
                 self.autoclicker.change_time(which_time, -1)
                 self.gui.change_time(which_time)
+
         elif which_time == "seconds":
             if self.autoclicker.get_seconds_time() - 1 >= 0:
                 self.autoclicker.change_time(which_time, -1)
                 self.gui.change_time(which_time)
+
         elif which_time == "1/10":
             if self.autoclicker.get_one_tenth_seconds_time() - 1 >= 0:
                 self.autoclicker.change_time(which_time, -1)
                 self.gui.change_time(which_time)
+
         else:
             if self.autoclicker.get_one_hundred_seconds_time() - 1 >= 0:
                 self.autoclicker.change_time(which_time, -1)
@@ -98,4 +112,5 @@ class App:
     def turn_off(self):
         if self.run_autoclicker.is_alive():
             self.autoclicker.turn_off()
+
         sys.exit()

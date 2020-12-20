@@ -31,15 +31,20 @@ class ListenerChangeHotkeys:
         except AttributeError:
             format_key = format(key)
             format_key = format_key[4:]
+
         if format_key != self.last_press:
             self.length_of_hotkey += 1
             self.last_press = format_key
+
             if self.hotkey != "":
                 self.hotkey = self.hotkey + " + "
+
             self.hotkey = self.hotkey + str(format_key)
+
             if key == keyboard.Key.ctrl_l:
                 self.fix_against_ctrl_l = 1
                 keyboard.Controller().release(keyboard.Key.ctrl_l)
+
             if key == keyboard.Key.ctrl_r:
                 self.fix_against_ctrl_r = 1
                 keyboard.Controller().release(keyboard.Key.ctrl_r)

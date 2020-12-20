@@ -23,6 +23,7 @@ class Autoclicker:
             else:
                 win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, 0, 0)
                 win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, 0, 0)
+
             for i in range(how_many_one_hundred_seconds_should_pass_before_press):
                 time.sleep(0.01)
                 if not self.is_working:
@@ -46,10 +47,13 @@ class Autoclicker:
     def change_time(self, which_time, how_much):
         if which_time == "minutes":
             self.minutes_time += how_much
+
         elif which_time == "seconds":
             self.seconds_time += how_much
+
         elif which_time == "1/10":
             self.one_tenth_seconds_time += how_much
+
         else:
             self.one_hundred_seconds_time += how_much
 

@@ -31,14 +31,18 @@ class ListenerForHotkeys:
         except AttributeError:
             format_key = format(key)
             format_key = format_key[4:]
+
         if format_key != self.last_press:
             self.last_press = format_key
             if self.input != "":
                 self.input = self.input + " + "
+
             self.input = self.input + str(format_key)
+
             if key == keyboard.Key.ctrl_l:
                 self.fix_against_ctrl_l = 1
                 keyboard.Controller().release(keyboard.Key.ctrl_l)
+
             if key == keyboard.Key.ctrl_r:
                 self.fix_against_ctrl_r = 1
                 keyboard.Controller().release(keyboard.Key.ctrl_r)
@@ -51,10 +55,12 @@ class ListenerForHotkeys:
         else:
             if self.input == self.turn_on_hotkey and self.should_listen_for_turn_on_hotkey:
                 self.app.start_autoclicker()
+
             #  We only listen for one of the given hotkeys (so that the user can use the same hotkey
             #  to start and end the autoclicker)
             if self.input == self.turn_off_hotkey and not self.should_listen_for_turn_on_hotkey:
                 self.app.stop_autoclicker()
+
             self.last_press = ""
             self.input = ""
             self.fix_against_ctrl_l = 0
